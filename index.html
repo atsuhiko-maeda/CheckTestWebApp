@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <title>確認テストアプリ</title>
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.19/xlsx.full.min.js"></script>
+  <script>
+    var wrapper = document.getElementByID('wrapper');
+    function math_update(event) {
+      MathJax.Hub.Typeset(wrapper,function(){console.log("done")});
+    }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M1VW2LK11G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M1VW2LK11G');
+</script>
+  
+</head>  
+
+<body>
+  <div id="my-vue">
+    ストレージ:{{local_storage_data_length}}問→
+    <select v-model="selected_category" v-on:change="selected">
+      <option v-for="value in category" :key="category">
+        {{ value }}
+      </option>
+    </select>
+    を読み込み
+    →メモリ上:{{test_data_length}}問&emsp;hash code: {{hash_string_mini}}&emsp;<input type="checkbox" v-model="shuffle" />問題順と選択肢順をシャッフル&emsp;<button v-on:click="start()">スタート</button><br>
+
+    <!-- <ul class="qt-answer ">        
+      <li>
+        <label class="qt-button"><span>
+          以下を\(x\)で微分したとき、記号欄に当てはまる値の組み合わせを選べ。
+          \[ f(x) = x^3+x^2+x^1+1 \]
+          \[ \frac{d}{dx}f(x)= (ア)x^{(イ)}+(ウ)x+(エ)\]
+          </span></label>
+      </li>
+    </ul> -->
+
+    <div id="wrapper" ref="wrapper">
+      <main class="qt" v-bind:style="{backgroundColor: bg_color}">
+        <div class="inner-block">
+          <div class="qt-content">
+
+            <div class="finish" v-bind:class="{'finish-visible':finish_show,'finish-none':!finish_show}">
+              <div class="score-wrap">
+                <span class="score">{{correct_num}}</span>
+                <span class="ja">点</span>
+                <span class="full">／{{total_question_num}}点</span>
+                <br/>
+                  <span class="hash">time: {{elapsed_time}}</span>
+                <!-- </p> -->
+                <!-- <p> -->
+                  <br/>
+                <span class="hash">hash code: {{hash_string}}</span>
+                <!-- </p> -->
+              </div>
+              <span v-on:click="start()" class="goback-button">最初からやり直す</span>
+            </div>
+
+            <div class="qt-question-number" v-html="str_frac_ques_num"></div>
+            <div v-html="current_question" class="qt-question"></div>
+            <ul class="qt-answer" v-bind:class="{'is-correct':correct_show,'is-incorrect':incorrect_show}">        
+              <li v-for="(button,index) in button_array" :key="button">
+                <label class="qt-button" v-on:click="onButtonClicked(index)">
+                  <span v-bind:style="[button.is_correct ? 'color:red':'color:black']">{{button.text}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div>
+      問題データを読み込みストレージに保存: <input type="file" @change="handleFile" @click="$event.target.value=''"/>
+      ストレージ:{{local_storage_data_length}}問　<button v-on:click="clear_local_storage()">ストレージをすべてクリア</button><br>      
+      <!-- （同じ分類なら現在のデータが上書きされ、新しい分類なら追加されます）<br> -->
+    </div>
+    <!-- テスト用データの入力エリア（エクセルからコピーする）：<button v-on:click="data_input()">ストレージに保存</button>
+    <br>
+    <textarea v-model="test_data" cols="80" rows="10"></textarea><br> -->
+    背景色: <input v-model="bg_color" placeholder="#fff5db" />（Webカラー指定: #fff5db #fff0f5 snow beige など）
+  </div>
+</body>
+<script src="https://unpkg.com/vue@3.0.11"></script>
+<script src="index.js"></script>  
+</html>
