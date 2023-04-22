@@ -61,8 +61,10 @@ const MyVue = {
       }
 
       let saved_data = localStorage.getItem('テストデータ');
-      if (saved_data===null)
+      if (saved_data===null) {
+        this.local_storage_data_length = 0;
         return;
+      }
 
       let array= JSON.parse(saved_data);
 
