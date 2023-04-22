@@ -1,5 +1,3 @@
-#CheckTestApp
-
 ブラウザ（Google Chrome推奨）でindex.htmlを開く。
 
 一番下までスクロールする。
