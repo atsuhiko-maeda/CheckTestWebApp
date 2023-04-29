@@ -26,6 +26,7 @@ const MyVue = {
 
       start_time:0, 
       elapsed_time:0,
+      start_time_to_string:"",
 
       finish_show:false,
       correct_show:false,
@@ -113,6 +114,7 @@ const MyVue = {
         // this.test_array = shuffle(this.test_array);
 
       this.start_time = Date.now();
+      this.start_time_to_string = new Date().toLocaleString();
       this.correct_num=0;
       this.total_question_num=this.test_array.length;
       this.current_question_num=-1;
