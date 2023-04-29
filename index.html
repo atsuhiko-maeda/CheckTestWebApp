@@ -57,7 +57,8 @@
                 <span class="ja">点</span>
                 <span class="full">／{{total_question_num}}点</span>
                 <br/>
-                <span class="hash">実施日時: {{start_time_to_string}}, 問題集: {{selected_category}}, シャッフル: {{shuffle}}</span><br>
+                <span class="hash">実施日時: {{start_time_to_string}}</span><br>
+                <span class="hash">問題集: {{selected_category}}, シャッフル: {{shuffle}}</span><br>
                 <span class="hash">経過時間: {{elapsed_time}}</span>
                 <!-- </p> -->
                 <!-- <p> -->
@@ -65,7 +66,7 @@
                 <span class="hash">hash code: {{hash_string}}</span>
                 <!-- </p> -->
               </div>
-              <span v-on:click="start()" class="goback-button">最初からやり直す</span>
+              <!-- <span v-on:click="start()" class="goback-button">最初からやり直す</span> -->
             </div>
 
             <div class="qt-question-number" v-html="str_frac_ques_num"></div>
