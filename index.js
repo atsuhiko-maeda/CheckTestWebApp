@@ -76,7 +76,7 @@ const MyVue = {
 
       this.local_storage_data_length = len;
 
-      this.category = Object.keys(array);
+      this.category = Object.keys(array).sort();
 
       return array;
     },
@@ -165,7 +165,7 @@ const MyVue = {
 
             // index指定でシート名を取得
             const sheetName = wb.SheetNames[0];
-            console.log(sheetName);
+            // console.log(sheetName);
             // シート名からworksheetを取得
             const worksheet = wb.Sheets[sheetName];
             worksheet["A1"] = {v:"category",  t:"s",  w:"category"};              
@@ -217,7 +217,7 @@ const MyVue = {
               len+=all_test_data[key].length;
 
             this.local_storage_data_length = len;
-            this.category = Object.keys(all_test_data);
+            this.category = Object.keys(all_test_data).sort();
   
         }.bind(this);
 
