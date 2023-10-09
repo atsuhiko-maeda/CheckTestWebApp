@@ -1,9 +1,11 @@
 # CheckTestApp
 
-## 本Webアプリの特徴
-* 選択問題をシャッフルして実行できます。
-* 問題データはローカルで管理します（外部には送信しません）。
-* LaTexスタイルの数式で問題を記述することができます。
+* 自分で準備した選択問題をシャッフルして表示できるWebアプリ（ブラウザで実行するアプリ）です。
+* Webアプリですが、問題データはローカルで管理します（外部には送信しません）。他者に見られることはありません。
+* LaTexスタイルの数式で問題を記述することもできます。
+
+<img src="https://github.com/atsuhiko-maeda/CheckTestWebApp/blob/main/screenshot01.png">
+<img src="https://github.com/atsuhiko-maeda/CheckTestWebApp/blob/main/screenshot02.png">
 
 ## セッティング方法
 * ブラウザ（Google Chrome推奨）で次のURLを開く。
@@ -21,5 +23,3 @@
 *  「問題データを読み込みストレージに保存」の「ファイルを選択」で、新しい「分類」が含まれるエクセルファイルを読み込むと、ローカルストレージのデータは消されず、追加される（仮に「第1章」、「第2章」という分類がストレージに保存されている状態で「第3章」を読み込むと追加される）。
 * ローカルストレージに既に保存されている「分類」の問題データを読み込んだ場合は、上書きされる（「第1章」がストレージに保存されている状態で「第1章」の問題を読み込めば上書きされる）。
 
-<img src="https://github.com/atsuhiko-maeda/CheckTestWebApp/blob/main/screenshot01.png">
-<img src="https://github.com/atsuhiko-maeda/CheckTestWebApp/blob/main/screenshot02.png">
