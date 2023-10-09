@@ -1,7 +1,7 @@
 # CheckTestApp
 
 * 自分で準備した選択問題をシャッフルして確認テストができるWebアプリ（ブラウザで実行するアプリ）です。
-* Webアプリですが、問題データはローカルで管理します（外部には送信しません）。他者に見られることはありません。
+* Webアプリですが、問題データはローカルで管理します（外部には送信しません）。従って他者に見られることはありません。
 * LaTexスタイルの数式で問題を記述することもできます。
 
 <img src="https://github.com/atsuhiko-maeda/CheckTestWebApp/blob/main/screenshot01.png">
