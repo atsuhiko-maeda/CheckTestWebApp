@@ -218,6 +218,8 @@ const MyVue = {
 
             this.local_storage_data_length = len;
             this.category = Object.keys(all_test_data).sort();
+
+            this.selected();
   
         }.bind(this);
 
