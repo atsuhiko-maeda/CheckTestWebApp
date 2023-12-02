@@ -179,7 +179,10 @@ const MyVue = {
             output = to_json(wb);
             output = Object.entries(output)[0][1];
             for (let i=0 ; i<output.length ; i++){
-              let str = output[i]["option"];
+              // let str = output[i]["option"];
+              //20231202
+              let str = output[i]["option"].trim();
+              //20231202
               let array = str.split(/\r\n|\n/);
               output[i]["option"] = array;
 
@@ -225,58 +228,6 @@ const MyVue = {
 
         reader.readAsArrayBuffer(f);
     },
-    // data_input(){
-    //   if (this.test_data===undefined){
-    //     return;
-    //   }
-
-    //   let array=[];
-    //   //一旦ダブルクォート内の改行を/に置換
-    //   let newstr = this.test_data.replace(/"[^"]+"/g, function(v) { 
-    //     return v.replace(/\r\n|\n/g, '/');
-    //   });
-    //   // console.log(newstr);
-
-    //   //改行で問題ごとに分割
-    //   let rows = newstr.split(/\r\n|\n/);
-    //   // console.log(rows.length);
-    //   for(let i=0 ; i<rows.length ; i++){
-
-    //     //空データを除外 2023016
-    //     if (rows[i].length===0)
-    //       continue;
-
-    //     let elem = rows[i].split("\t");
-    //     let table = {};
-
-    //     //headerは除外
-    //     if (elem[0]==="分類")
-    //       continue;
-
-    //     table["category"]=elem[0];
-    //     table["page"]=elem[1];
-    //     table["number"]=elem[2];
-    //     table["answer"]=elem[5];
-
-    //     //　/に置き換えていた改行を<br>に置換、"を削除
-    //     if (elem[3].startsWith('"') && elem[3].endsWith('"')){
-    //       elem[3]=elem[3].slice(1);
-    //       elem[3]=elem[3].slice(0,-1);
-    //       elem[3] = elem[3].replace(/\//g,"<br>");
-    //     }        
-    //     table["question"]=elem[3];
-
-    //     let option_array = elem[4].slice(1).slice(0,-1).split("/");
-    //     table["option"]=option_array;
-
-    //     array.push(table);
-    //   }
-    //   //ローカルストレージに保存しておく
-    //   localStorage.setItem('テストデータ', JSON.stringify(array));
-    //   this.local_storage_data_length = array.length;
-
-    //   this.get_filtered_test_data(array);
-    // },
     get_filtered_test_data(array){
 
       if (this.selected_category===""){
@@ -319,6 +270,7 @@ const MyVue = {
     },
     correct(){
       this.correct_show=false;
+
       this.nextQuestion();
     },
     incorrect(){
@@ -330,12 +282,15 @@ const MyVue = {
     onButtonClicked(message) {
       if (this.answer===message){
         this.correct_num+=1;
-        this.correct_show=true;
+        this.correct_show=true;//show O
+        //20231202
+        this.button_array[this.answer]['is_correct']=true;
+        //20231202
         setTimeout(this.correct, 500);    
       }
       else{
         this.button_array[this.answer]['is_correct']=true;
-        this.incorrect_show=true;
+        this.incorrect_show=true;// show X
         setTimeout(this.incorrect,500);
       }
     },
@@ -364,6 +319,7 @@ const MyVue = {
 //      this.answer = ques['option'][ques['answer']-1].replace(/\d{1}:/,"");
       this.question_page = ques['page'];
       let copy_array=[]; 
+
       if (this.shuffle)
         copy_array = shuffle(Array.from(ques['option']));
       else
@@ -372,9 +328,11 @@ const MyVue = {
       this.button_array=[];
       for (let i=0  ; i<copy_array.length ; i++){
 
+        //20231202
         //空データを除外、20230316
-        if (copy_array[i].length===0)
-          continue;
+        // if (copy_array[i].length===0)
+        //   continue;
+        //20231202
 
         let results = copy_array[i].match(/(\d+):/);
         if (results[1]===ques['answer']){
