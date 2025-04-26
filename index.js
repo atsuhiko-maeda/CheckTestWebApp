@@ -188,7 +188,7 @@ const MyVue = {
 
               output[i]["answer"]=""+output[i]["answer"];
               output[i]["number"]=""+output[i]["number"];
-              output[i]["question"] = output[i]["question"].replace(/\r\n|\n/g,"<br>");
+              output[i]["question"] = output[i]["question"].replace(/\r\n|\n|\r/g,"<br>");
             }
 
             let category_array = Array.from(new Set(
