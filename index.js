@@ -184,6 +184,7 @@ const MyVue = {
               let str = output[i]["option"].trim();
               //20231202
               let array = str.split(/\r\n|\n|\r/);
+              array = array.map(str=>str.trim());//20250426
               output[i]["option"] = array;
 
               output[i]["answer"]=""+output[i]["answer"];
