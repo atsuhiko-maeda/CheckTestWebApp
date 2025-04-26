@@ -183,7 +183,7 @@ const MyVue = {
               //20231202
               let str = output[i]["option"].trim();
               //20231202
-              let array = str.split(/\r\n|\n/);
+              let array = str.split(/\r\n|\n|\r/);
               output[i]["option"] = array;
 
               output[i]["answer"]=""+output[i]["answer"];
